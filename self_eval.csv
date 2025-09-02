@@ -1,0 +1,9 @@
+STT,Thành phần Tư duy AI,Mô tả nội dung cần phản ánh,Tự đánh giá (1-5),Ghi chú
+1,Xác định mục tiêu AI rõ ràng,Bài toán có rõ mục tiêu AI hỗ trợ gì không? Có thể giải được bằng AI không?,,
+2,Lựa chọn phương pháp AI phù hợp,Vì sao chọn ML/DL hay rule-based? Mô hình chọn có hợp lý?,,
+3,Phân tích và đánh giá dữ liệu,"Nguồn gốc, chất lượng, cân bằng, xử lý thiếu/chuẩn hóa",,
+4,Đánh giá kỹ thuật + rủi ro đạo đức,"Khả năng sai lệch, bias, tác động xã hội, phương án giảm thiểu",,
+5,Hiểu giới hạn của mô hình,"Điểm mạnh/yếu, phạm vi áp dụng, stress-test",,
+6,Gợi ý cải tiến tương lai / triển khai,"Lộ trình nâng cấp, giám sát, MLOps",,
+7,Khả năng giải thích model & pipeline,"Diễn giải từng bước từ input đến output, lý do quyết định",,
+8,Hiện thực demo,Chạy minh họa chức năng end-to-end,,

@@ -1,0 +1,33 @@
+# Edit these paths for your machine
+data:
+  train_csv: "data/loans_train.csv"   # or a single big CSV containing all rows
+  test_csv:  "data/loans_test.csv"    # optional; if missing, script will split automatically
+  id_col: "id"
+  date_col: "issue_d"                 # if available; used for time-based split
+  target: "default"                   # binary target (1 = default / bad)
+  positive_label: 1
+
+schema:
+  numeric: ["loan_amnt","int_rate","annual_inc","dti","revol_util","fico_mean","open_acc","delinq_2yrs","inq_last_6mths"]
+  categorical: ["purpose","addr_state","home_ownership","verification_status","emp_length","term","application_type"]
+  drop: ["member_id","emp_title"]
+
+split:
+  strategy: "time"      # "time" or "random"
+  time_train_end: "2018-12-31"   # used if strategy == "time"
+  valid_size: 0.2                # used if strategy == "random"
+  random_state: 42
+
+model:
+  algorithm: "lightgbm"     # "lightgbm" | "xgboost" | "sklearn_gbdt" | "logreg"
+  params:
+    n_estimators: 500
+    learning_rate: 0.05
+    max_depth: -1
+    num_leaves: 64
+
+train:
+  class_weight: "balanced"
+  n_jobs: -1
+
+artifacts_dir: "artifacts"
