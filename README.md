@@ -1,48 +1,39 @@
-# Credit Scoring (Fintech & Banking) — Starter Pack
+# Credit Scoring — AI Thinking Starter Pack / Bộ khung tư duy AI cho chấm điểm tín dụng
 
-**Date:** 2025-09-02
+[English](#english) · [Tiếng Việt](#tiếng-việt)
 
-This pack gives you:
-- End-to-end ML pipeline scripts (`src/train.py`, `src/infer.py`, `app.py`)
-- Ready-to-edit report outline (`report.md`, ~35 pages worth of content when moved to Word)
-- Slide outline for 20–25 slides (`slides_outline.md`)
-- Self-evaluation table (`self_eval.csv`)
-- Config file (`config.yaml`) and requirements (`requirements.txt`)
+> **Repository status: educational scaffold / bộ khung học tập.** This repository is **not a complete, runnable model-training project** in its current checked state. A separate executed notebook is available at [`hoangtm3979/credit`](https://github.com/hoangtm3979/credit).
 
-It is designed to scale to a ~1.8M-row credit dataset (e.g., LendingClub-style).
+## English
 
-## Quickstart
+**Context:** Educational exercise in decomposing a credit-risk prediction problem into data, labels, ML training, decision thresholds, interpretation, and operational monitoring.
 
-```bash
-# 1) Python 3.11 recommended (3.13 may cause some libs to be unavailable)
-python -m venv venv
-source venv/bin/activate   # Windows: venv\Scripts\activate
+- **Problem:** estimate loan default/adverse outcome probability while considering temporal leakage, data imbalance, calibration, and fairness.
+- **Planned input:** structured loan/applicant records and a clearly specified outcome label.
+- **Planned output:** risk probability, decision-support score, evaluation report, and a user-facing demonstration.
+- **Approach described in documentation:** data preparation, Logistic Regression baseline, candidate tree ensembles, threshold and PSI evaluation.
+- **Constraint:** no real lending decision, official bureau score, or demonstrated model performance is established by this repository alone.
 
-pip install -r requirements.txt
+### What is actually checked into this repo
 
-# 2) Train (edit config.yaml paths first)
-python src/train.py --config config.yaml
+- `app.py`: a Streamlit-oriented demonstration scaffold.
+- `config.yaml`: configuration examples.
+- `requirements.txt`: dependency listing.
+- `report.md`: explicitly a **draft outline with TODOs**, not an experiment-verified paper.
+- `slides_outline.md`, `self_eval.csv`: presentation and self-assessment templates.
 
-# 3) Local inference demo
-python src/infer.py --model_path artifacts/model.joblib --input_json assets/sample_input.json
+**Correction to the former README:** it referred to `src/train.py`, `src/infer.py` and `assets/sample_input.json`, but those paths do **not** exist in the current root listing. The original Quickstart therefore cannot be treated as executable without completing the missing implementation.
 
-# 4) Run Streamlit UI
-streamlit run app.py --server.port 8502
-```
+## Tiếng Việt
 
-## Files
-- `src/train.py`: chunked CSV reader, downcasting dtypes, feature pipeline, train baseline + boosted model (falls back gracefully).
-- `src/infer.py`: load artifact, run prediction for a single JSON or CSV batch.
-- `app.py`: simple Streamlit app to upload CSV and score; shows top features (global) if available.
-- `config.yaml`: dataset paths, column lists, target, split keys, model params.
-- `report.md`: full report outline (copy to Word, then export to PDF).
-- `slides_outline.md`: slide-by-slide bullet outline.
-- `self_eval.csv`: “Bảng tự đánh giá AI Thinking” template (fill scores 1–5).
-- `requirements.txt`: conservative set of libs; works even if XGBoost/LightGBM not present (fallback to scikit-learn).
+**Bối cảnh:** Bài thực hành tư duy AI về đánh giá rủi ro tín dụng cá nhân. Mục đích là phân rã một vấn đề fintech thành các khâu có thể kiểm chứng.
 
-## Tips for 1.8M rows
-- Use `dtype_map` + `category` to shrink memory; prefer LightGBM (histogram) for speed; or XGBoost with `tree_method=hist`.
-- If RAM < 32GB, train on balanced subsample first, then full train with selected features.
-- Use time-based split (e.g., train 2014–2018, test 2019–2020) to evaluate stability (PSI).
-- Persist `ColumnTransformer` and the model as artifacts (joblib).
+- **Input dự kiến:** bảng khoản vay, đặc trưng khách hàng và nhãn được định nghĩa đúng thời điểm.
+- **Output dự kiến:** xác suất rủi ro, điểm số hỗ trợ quyết định, báo cáo đánh giá và giao diện mẫu.
+- **Phương pháp đề xuất:** chuẩn hóa dữ liệu, Logistic Regression làm baseline, boosted trees, tối ưu threshold, theo dõi PSI/drift.
+- **Kết quả có thể xác nhận:** bộ khung mã/tài liệu đang có trong repository; **chưa có model benchmark hoàn chỉnh hoặc triển khai production được chứng minh tại đây**.
+- **Vấn đề cần hoàn tất:** mã train/inference riêng, dữ liệu mẫu được phép chia sẻ, test pipeline, tính tái lập và loại bỏ TODO.
 
+**Liên hệ công việc:** Notebook thực nghiệm đã lưu output ở repository [`credit`](https://github.com/hoangtm3979/credit); hai repository cần được hợp nhất hoặc phân định rõ vai trò trước khi đưa lên CV như một dự án hoàn chỉnh.
+
+_Last reviewed: 2026-10-25._
